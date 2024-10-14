@@ -1,0 +1,91 @@
+/MARIE Assembly Fibonacci
+/ nth value starts at 0 for example the 0th value is 0 and the third value is 2
+/takes the input 
+Input
+STORE X
+STORE TOT
+/ Check if input is 0-4 and if it is outputs the correspanding number
+SKIPCOND 400
+JUMP CHECK1
+JUMP OUT0
+
+/checks if one and goes to the next number
+CHECK1, LOAD X
+    SUBT ONE
+    SKIPCOND 400
+    JUMP CHECK2
+    JUMP OUT1
+/checks if 2 and goes to the next number
+CHECK2, LOAD X
+    SUBT TWO
+    SKIPCOND 400
+    JUMP CHECK3
+    JUMP OUT1
+/checks if 3 and goes to the next number
+CHECK3, LOAD X
+    SUBT THREE
+    SKIPCOND 400
+    JUMP CHECK4
+    JUMP OUT2
+/checks if 4 and goes to the main program
+CHECK4, LOAD X
+    SUBT FOUR
+    SKIPCOND 400
+    JUMP MAIN
+    JUMP OUT3
+
+/OUTPUTS 0
+OUT0, LOAD ZERO
+    OUTPUT
+    HALT
+
+/OUTPUTS 1
+OUT1, LOAD ONE
+    OUTPUT
+    HALT
+
+/OUTPUTS 2
+OUT2, LOAD TWO
+    OUTPUT
+    HALT
+
+/OUTPUTS 3
+OUT3, LOAD THREE
+    OUTPUT
+    HALT
+
+/start off the main loop, stores the prevouis iterations number and adds it 
+MAIN, LOAD FOUR
+    ADD ONE
+    STORE FOUR
+    LOAD START
+    ADD PLUS
+    STORE HOLD
+    LOAD START
+    STORE PLUS
+    LOAD HOLD
+    STORE START
+    JUMP CHECKZ
+  
+/check if we have reached the nth value and if we have outputs
+CHECKZ, LOAD FOUR
+		SUBT TOT
+        SKIPCOND 400
+        JUMP MAIN
+        JUMP OUTPUTS
+/outputs the value      
+OUTPUTS, LOAD START
+		OUTPUT
+HALT
+
+
+X,      DEC 0
+ZERO,   DEC 0
+ONE,    DEC 1
+TWO,    DEC 2
+THREE,  DEC 3
+FOUR,   DEC 4
+TOT, DEC 0
+START, DEC 3
+PLUS, DEC 2
+HOLD, DEC 0

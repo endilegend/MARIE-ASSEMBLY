@@ -1,0 +1,86 @@
+/MARIE Assembly Factorial
+/TAKE INPUT AND CHECK IF IT IS O IF IT IS 0 THEN OUTPUT 1
+Input
+STORE X
+Skipcond 400
+JUMP NOTZERO
+ADD ONE
+STORE MUL
+JUMP OUTPUTS
+
+/Take the input and store it and also store a Z value that will be used for the multiplication (addition) and y for factorial
+NOTZERO, LOAD X
+STORE CHECKONE
+STORE X
+SUBT ONE
+STORE Z
+Subt ONE
+STORE Y
+
+/CHECKS IF INXPUT IS 2 AND IF NOT CHECKS IF ONE
+SKIPCOND 400
+JUMP ONECHECK
+JUMP OUT2
+
+/CHECKS IF ONE AND IF NOT STARTS THE FACTORIAL PROCESS
+ONECHECK, LOAD CHECKONE
+Subt ONE
+SKIPCOND 400
+JUMP CHECKZ
+JUMP OUT1
+
+/OUTPUTS 1
+OUT1, LOAD ONE
+		OUTPUT
+        HALT
+
+/OUTPUTS 2
+OUT2, LOAD TWO
+		OUTPUT
+        Halt
+
+
+/if greater than go to addition if less go to the factorial
+CHECKZ, Skipcond 800 
+		JUMP FACT
+        /Subtract 1 from z        
+        LOAD Z
+        SUBT ONE
+        STORE Z
+	/jump to the addition part 
+        JUMP ADDITION
+/subtracts one off the y and if y is less than 0 go to outputs
+/if y>0 X becomes the  MUL value and Z becomes the Y value
+FACT, LOAD Y
+		SUBT ONE
+        STORE Y
+		Skipcond 800
+        JUMP OUTPUTS
+        LOAD MUL
+        STORE X
+        LOAD Y
+       STORE Z
+       Load Z
+        JUMP CHECKZ
+
+/Add x to MUL 
+ADDITION, LOAD MUL
+			ADD X
+            STORE MUL
+            Load MUL
+            LOAD Z
+            JUMP CHECKZ
+            
+            
+/Outputs the MUL value
+OUTPUTS, LOAD MUL
+		OUTPUT
+HALT
+CHECKONE, DEC 0
+X, DEC 0
+Y, DEC 0
+Z, DEC 0
+MUL, DEC 0
+ONE, DEC 1
+TWO, DEC 2
+
